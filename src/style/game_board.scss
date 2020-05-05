@@ -1,0 +1,74 @@
+.game-board {
+  max-width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 15px;
+}
+
+
+.mem-button {
+  width: 150px;
+  height: 30px;
+  margin: 30px auto;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  background: url('../images/wood_button.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Fontdiner Swanky', cursive;
+  font-size: 1.2rem;
+  line-height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: inset 0px 1px 0px #404040, 0px 5px 0px 0px #22201E, 5px 5px 10px rgba(0,0,0,0.6);
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  transition: all .1s ease-in-out;
+  &:hover {
+    text-shadow: 5px 5px 10px rgba(0,0,0,0.6);
+    filter: brightness(160%);
+  }
+  &:active, &.active {
+    box-shadow: inset 0px 1px 0px #404040, 0px 2px 0px 0px #22201E, 2px 2px 5px rgba(0,0,0,0.6);
+    filter: brightness(160%);
+  }
+}
+
+.mem-button.new-game {
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 1.8rem;
+}
+
+.theme {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+}
+
+@media (max-width: 600px) {
+  .game-board {
+    max-width: 400px;
+    height: 400px;
+    grid-gap: 10px;
+    padding: 0 10px;
+  }
+  .mem-button {
+    width: 120px;
+    font-size: 1.1rem;
+  }
+  .mem-button.new-game {
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.5rem;
+  }
+  .theme {
+    max-width: 400px;
+  }
+}

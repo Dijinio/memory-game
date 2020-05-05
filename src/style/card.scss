@@ -1,0 +1,85 @@
+$images: (1, 2, 3, 4, 5, 6, 7, 8);
+
+$colors: (1: #FFB30F, 2: #EC6D6D, 3: #badc58,
+4: #686de0, 5: #FFCAB1, 6: #7ed6df, 7: #C3A9FE, 8: #EB53BE);
+
+$text_colors: (1: #000000, 2: #320E3B, 3: #3C4F76,
+4: #FFBF00, 5: #561643, 6: #BCED09, 7: #2D3142, 8: #FFFFFF);
+
+.card {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform .5s;
+  transform-style: preserve-3d;
+  &.rotate {
+    transform: rotateY(180deg);
+  }
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.7);
+  border-radius: 4px;
+}
+
+.card-front {
+  cursor: pointer;
+  background-color:white;
+  background-image: linear-gradient(to right, rgba(32,30,80,.5) 50%, transparent 50%),
+  linear-gradient(rgba(32,30,80,.5) 50%, transparent 50%);
+  background-size: 10px 10px;
+  box-sizing: border-box;
+  border: 5px solid #56567C;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+// Animal theme style
+@each $image in $images {
+  .animals.card-image-#{$image} {
+    background: url('../images/animals/animal_image_#{$image}.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: all 1s ease;
+  }
+}
+
+// Fruit theme style
+@each $image in $images {
+  .fruits.card-image-#{$image} {
+    background: url('../images/fruits/fruit_image_#{$image}.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+// Number theme style
+@each $image in $images {
+  .numbers.card-image-#{$image} {
+    background: none;
+    background-color: map-get($colors, $image);
+    text-align: center;
+    color: map-get($text_colors, $image);
+    &:before {
+      content: '#{$image}';
+      font-size: 7rem;
+      @media (max-width: 600px) {
+        font-size: 5rem;
+      }
+    }
+  }
+}
