@@ -1,0 +1,80 @@
+.menu {
+  position: relative;
+  background: url('../images/wood_button_or.jpg');
+  max-width: 600px;
+  height: 60px;
+  margin: 10px auto;
+  border-radius: 5px;
+  box-shadow: inset -2px -5px 0px #0f0e0d, 5px 5px 10px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: filter .3s ease-in-out;
+  z-index: 10;
+  &:hover {
+    filter: brightness(120%);
+  }
+}
+
+.menu-item {
+  height: 100%;
+  width: 150px;
+  p {
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    transition: all .3s ease-in-out;
+    color: #fff;
+    font-family: 'Fontdiner Swanky', cursive;
+    font-size: 1.5rem;
+    line-height: 60px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    i {
+      margin-right: 10px;
+    }
+  }
+  &.link:hover > p {
+    cursor: pointer;
+    text-shadow: 5px 5px 10px rgba(0,0,0,0.8);
+    transform: scale(1.1);
+  }
+}
+
+.theme-list {
+  list-style-type: none;
+  background: url('../images/wood_button_or.jpg');
+  box-shadow: inset -2px -5px 0px #0f0e0d, 5px 5px 10px rgba(0,0,0,0.6);
+  font-size: 1.1rem;
+  font-family: 'Fontdiner Swanky', cursive;
+  color: #fff;
+  padding-top: 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  li {
+    height: 50px;
+    text-transform: capitalize;
+    transition: all .3s ease;
+    &:hover, &.active {
+      cursor: pointer;
+      text-shadow: 0 0px 10px rgba(255,255,255,0.6), 0 0px 20px rgba(255,255,255,0.4);
+    }
+  }
+}
+
+.theme-list.slidedown {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .menu {
+    margin: 10px;
+  }
+  .menu-item p {
+    font-size: 1.2rem;
+  }
+  .theme-list {
+    font-size: .9rem;
+  }
+}

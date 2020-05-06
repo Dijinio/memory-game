@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import '../style/game_board.scss';
 import Card from './Card';
+import Menu from './Menu';
+import GameOverModal from './GameOverModal';
 
 function GameBoard({  }) {
   const [cards, setCards] = useState([]);
   const [clickCount, setClickCount] = useState(0);
   const [clickedCards, setClickedCards] = useState([]);
   const [imageTheme, setImageTheme] = useState('numbers');
+  const [gameOn, setGameOn] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [recordTime, setRecordTime] = useState(0);
 
+  // Start new game when loaded
   useEffect(() => {
     startNewGame();
   }, []);
+
+  // Check if game is over
+  useEffect(() => {
+    if ((!cards.some(card => card.active)) && gameOn) {
+      setGameOver(true);
+    }
+  }, [cards])
 
   // Check if clicked cards are same
   useEffect(() => {
@@ -32,6 +44,9 @@ function GameBoard({  }) {
     setCards(cards => createCards());
     setClickedCards([]);
     setClickCount(0);
+    setGameOn(false);
+    setGameOver(false);
+    setRecordTime(0);
   }
 
   // Create cards array
@@ -78,6 +93,10 @@ function GameBoard({  }) {
 
   // Handle Image Click
   function imageClicked(id, cardNo) {
+    // Start Timer
+    if (!gameOn) {
+      setGameOn(true);
+    }
     // do nothing if clicked on the same card
     if (clickedCards[0] && clickedCards[0].id === id) return;
 
@@ -107,32 +126,29 @@ function GameBoard({  }) {
 
   }
 
+  function changeTheme(theme) {
+    setImageTheme(theme);
+  }
+
+  function handleGameOver(time) {
+    setRecordTime(time);
+  }
+
   return (
     <div className="game-container">
-      <button
-        className="new-game mem-button"
-        onClick={() => startNewGame()}>
-          New Game
-        </button>
+      <GameOverModal
+        gameOver={gameOver}
+        recordTime={recordTime}
+        startNewGame={startNewGame}/>
+      <Menu
+        startNewGame={startNewGame}
+        imageTheme={imageTheme}
+        changeTheme={changeTheme}
+        gameOn={gameOn}
+        gameOver={gameOver}
+        handleGameOver={handleGameOver}/>
       <div className="game-board">
         { createBoard() }
-      </div>
-      <div className="theme">
-        <button
-          className={`mem-button ${imageTheme === 'numbers' ? 'active' : ''}`}
-          onClick={() => setImageTheme('numbers')}>
-            Numbers
-        </button>
-        <button
-          className={`mem-button ${imageTheme === 'fruits' ? 'active' : ''}`}
-          onClick={() => setImageTheme('fruits')}>
-            Fruits
-        </button>
-        <button
-          className={`mem-button ${imageTheme === 'animals' ? 'active' : ''}`}
-          onClick={() => setImageTheme('animals')}>
-            Animals
-        </button>
       </div>
     </div>
   )

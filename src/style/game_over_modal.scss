@@ -1,0 +1,55 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 100;
+  visibility: hidden;
+  &.active {
+    visibility: visible;
+    .modal-body {
+      transform: translateY(0);
+    }
+  }
+}
+
+.modal-body {
+  background: url('../images/wood_button_or.jpg');
+  margin: 20% auto;
+  max-width: 550px;
+  height: 300px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 3px;
+  box-shadow: inset -2px -5px 0px #0f0e0d, 10px 10px 30px rgba(0,0,0,0.6);
+  color: #fff;
+  transform: translateY(-200%);
+  transition: transform 1s ease-in-out;
+  h1, h2 {
+    font-family: 'Fontdiner Swanky', cursive;
+    font-weight: 500;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  }
+  button {
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+    font-family: 'Fontdiner Swanky', cursive;
+    font-size: 1.2rem;
+    font-synthesis: 50px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    outline: none;
+    &:hover {
+      text-shadow: 0 0px 10px rgba(255,255,255,0.6), 0 0px 20px rgba(255,255,255,0.4);
+    }
+  }
+}

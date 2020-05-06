@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import '../style/card.scss';
 
 function Card({ id, cardNo, active, imageClicked, show, imageTheme }) {
   const [image, setImage] = useState('');
